@@ -44,7 +44,9 @@ void OpenGlTutorialApp::setup()
 {
   buildTutorialList();
 
+  // Build parameters for moving through tutorial list.
 	mParams = params::InterfaceGl::create( "OpenGL Tutorial", ivec2( 300, 100 ) );
+  mParams->setOptions( "", "valueswidth=150" );
 
   vector<string> names;
   for( auto &tut : mTutorialMakers ) {
@@ -59,8 +61,8 @@ void OpenGlTutorialApp::setup()
 
 void OpenGlTutorialApp::buildTutorialList()
 {
-  mTutorialMakers.push_back( make_pair( "First Triangle", &make_shared<FirstTriangle> ) );
-  mTutorialMakers.push_back( make_pair( "Just Like the First Triangle", &make_shared<FirstTriangle> ) );
+  mTutorialMakers.push_back( make_pair( "02 First Triangle", &make_shared<FirstTriangle> ) );
+  mTutorialMakers.push_back( make_pair( "02 Just Like the First Triangle", &make_shared<FirstTriangle> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
