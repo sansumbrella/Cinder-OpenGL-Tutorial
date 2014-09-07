@@ -1,8 +1,53 @@
-build
+
+# Xcode
+# https://github.com/github/gitignore/blob/master/Global/Xcode.gitignore
+
+build/
 *.pbxuser
+!default.pbxuser
 *.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
 *.xcuserstate
-*.xcuserdatad
-*.xcworkspace
-.svn
+
+# OSX
+# https://github.com/github/gitignore/blob/master/Global/OSX.gitignore
+
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Visual Studio
+# https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+
+
+# emacs
+# https://github.com/github/gitignore/blob/master/Global/Emacs.gitignore
+
+*~
+.\#*
+\#*\#
