@@ -53,9 +53,11 @@ void TexturedCube::draw()
   gl::enableDepthRead();
 
   gl::ScopedTextureBind tex0( mTexture );
+
+  float t = app::getElapsedSeconds() * 2.0f;
   mat4 projection = glm::perspective( 45.0f, app::getWindowWidth() / (float) app::getWindowHeight(), 0.1f, 100.0f );
   mat4 view = glm::lookAt( vec3( 4, 3, 3 ), vec3( 0, 0, 0 ), vec3( 0, 1, 0 ) );
-  mat4 model( 1 );
+  mat4 model = glm::eulerAngleXY( t * 0.13f, t * 0.37f );
   mat4 mvp = projection * view * model;
 
   mBatch->getGlslProg()->uniform( "uColorMap", 0 );
