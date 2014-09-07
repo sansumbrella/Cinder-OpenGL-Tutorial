@@ -36,7 +36,10 @@ using namespace cinder;
 void TexturedCube::setup()
 {
 
-  mTexture = gl::Texture::create( loadImage( app::loadAsset( "05/texture-01.jpg" ) ) );
+  gl::Texture::Format format;
+  format.enableMipmapping();
+//  format.setMaxAnisotropy( 2.0f );
+  mTexture = gl::Texture::create( loadImage( app::loadAsset( "05/texture-01.jpg" ) ), format );
 
   auto shader = gl::GlslProg::create( gl::GlslProg::Format()
                                      .vertex( app::loadAsset( "05/texture.vs" ) )
