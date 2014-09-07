@@ -44,7 +44,7 @@ void OpenGlTutorialApp::setup()
 {
   buildTutorialList();
 
-	mParams = params::InterfaceGl::create( "OpenGL Tutorial", ivec2( 200, 300 ) );
+	mParams = params::InterfaceGl::create( "OpenGL Tutorial", ivec2( 300, 100 ) );
 
   vector<string> names;
   for( auto &tut : mTutorialMakers ) {
