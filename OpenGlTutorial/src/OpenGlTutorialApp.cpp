@@ -7,6 +7,7 @@
 #include "tutorials/FirstTriangle.h"
 #include "tutorials/Matrices.h"
 #include "tutorials/ColoredCube.h"
+#include "tutorials/TexturedCube.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -67,6 +68,7 @@ void OpenGlTutorialApp::buildTutorialList()
   mTutorialMakers.push_back( make_pair( "02 First Triangle", &make_shared<FirstTriangle> ) );
   mTutorialMakers.push_back( make_pair( "03 Matrices", &make_shared<Matrices> ) );
   mTutorialMakers.push_back( make_pair( "04 Colored Cube", &make_shared<ColoredCube> ) );
+  mTutorialMakers.push_back( make_pair( "05 Textured Cube", &make_shared<TexturedCube> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
