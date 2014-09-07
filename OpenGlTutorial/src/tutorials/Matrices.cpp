@@ -27,13 +27,42 @@
 
 #include "Matrices.h"
 
+#include "cinder/gl/VboMesh.h"
+#include "cinder/gl/GlslProg.h"
+
+using namespace std;
+using namespace cinder;
 
 void Matrices::setup()
 {
+  // Our vertex positions
+  vector<vec3> position = {
+    vec3( -1.0f, -1.0f, 0.0f ),
+    vec3( 1.0f, -1.0f, 0.0f ),
+    vec3( 0.0f,  1.0f, 0.0f ),
+  };
 
+  // Upload our positions to the GPU.
+  // This performs the genBuffers and buffers our data.
+  gl::VboRef positionBuffer = gl::Vbo::create( GL_ARRAY_BUFFER, position );
+
+  // BufferLayout describes what data is in our position buffer.
+  // This determines the settings passed to glVertexAttribPointer.
+  geom::BufferLayout layout;
+  layout.append( geom::Attrib::POSITION, 3, 0, 0 );
+
+  // Cache vertex attribute info describing our VBO in a VAO so we can draw it.
+  auto mesh = gl::VboMesh::create( position.size(), GL_TRIANGLES, { { layout, positionBuffer } } );
+
+  // Load shader programs from our assets folder.
+  auto shader = gl::GlslProg::create( gl::GlslProg::Format()
+                                 .vertex( app::loadAsset( "02/noTransform.vs" ) )
+                                 .fragment( app::loadAsset( "02/red.fs" ) ) );
+
+  mBatch = gl::Batch::create( mesh, shader );
 }
 
 void Matrices::draw()
 {
-  
+  mBatch->draw();
 }

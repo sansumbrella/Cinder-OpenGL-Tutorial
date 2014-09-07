@@ -30,6 +30,9 @@
 #include "TutorialBase.h"
 #include "cinder/gl/VboMesh.h"
 
+///
+/// Draw a triangle to screen using homogeneous coordinates.
+///
 class FirstTriangle : public TutorialBase
 {
 public:

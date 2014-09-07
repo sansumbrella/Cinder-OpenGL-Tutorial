@@ -28,11 +28,19 @@
 #pragma once
 
 #include "TutorialBase.h"
+#include "cinder/gl/Batch.h"
 
+///
+/// Draw a triangle to screen with a perspective transformation.
+///
+/// In addition, we introduce Cinder's gl::Batch object, which wraps up
+/// a VboMesh and Glsl shader for simplified drawing.
+///
 class Matrices : public TutorialBase
 {
 public:
   void setup() override;
   void draw() override;
 private:
+  ci::gl::BatchRef    mBatch;
 };
