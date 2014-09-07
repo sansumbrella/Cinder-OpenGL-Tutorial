@@ -2,9 +2,11 @@
 
 uniform vec3 uColor;
 
+in vec3 vColor;
+
 out vec3 fColor;
 
 void main()
 {
-	fColor = uColor;
+	fColor = uColor * vColor;
 }

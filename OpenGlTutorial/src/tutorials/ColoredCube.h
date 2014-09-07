@@ -38,5 +38,4 @@ public:
   void draw() override;
 private:
   ci::gl::BatchRef  mCubeBatch;
-//  ci::gl::BatchRef  mAltCubeBatch;
 };

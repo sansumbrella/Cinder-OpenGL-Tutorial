@@ -76,27 +76,32 @@ void ColoredCube::setup()
   };
 
   auto buffer = gl::Vbo::create( GL_ARRAY_BUFFER, cubePositions );
-  geom::BufferLayout layout;
-  layout.append( geom::Attrib::POSITION, 3, 0, 0 );
-  auto mesh = gl::VboMesh::create( cubePositions.size(), GL_TRIANGLES, { { layout, buffer } } );
+  // Buffer describes positions.
+  geom::BufferLayout positionLayout;
+  positionLayout.append( geom::Attrib::POSITION, 3, 0, 0 );
+  // Use same buffer to describe colors
+  geom::BufferLayout colorLayout;
+  colorLayout.append( geom::Attrib::COLOR, 3, 0, 0 );
+
+  auto mesh = gl::VboMesh::create( cubePositions.size(), GL_TRIANGLES, { { positionLayout, buffer }, { colorLayout, buffer } } );
   auto shader = gl::GlslProg::create( gl::GlslProg::Format()
                                      .vertex( app::loadAsset( "04/mvp.vs" ) )
                                      .fragment( app::loadAsset( "04/color.fs" ) ) );
 
   mCubeBatch = gl::Batch::create( mesh, shader );
-
-//  mAltCubeBatch = gl::Batch::create( geom::Cube(), shader );
 }
 
 void ColoredCube::draw()
 {
   mat4 model( 1 );
-  mat4 view = glm::lookAt( vec3( 4, 3, 3 ), vec3( 0, 0, 0 ), vec3( 0, 1, 0 ) );
+  mat4 view = glm::lookAt( vec3( 4, 3, -3 ), vec3( 0, 0, 0 ), vec3( 0, 1, 0 ) );
   mat4 projection = glm::perspective( 45.0f, app::getWindowWidth() / (float)app::getWindowHeight(), 0.1f, 100.0f );
+
+  gl::enableDepthRead();
+  gl::enableDepthWrite();
 
   mat4 mvp = projection * view * model;
   mCubeBatch->getGlslProg()->uniform( "uMVP", mvp );
   mCubeBatch->getGlslProg()->uniform( "uColor", vec3( 1 ) );
   mCubeBatch->draw();
-//  mAltCubeBatch->draw();
 }
