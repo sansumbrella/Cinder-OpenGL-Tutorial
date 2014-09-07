@@ -57,7 +57,7 @@ void OpenGlTutorialApp::setup()
   mParams->addButton( "Next Tutorial", [this] { loadTutorial( mTutorialIndex + 1 ); } );
   mParams->addButton( "Previous Tutorial", [this] { loadTutorial( mTutorialIndex - 1 ); } );
 
-  loadTutorial( 0 );
+  loadTutorial( 1 );
 }
 
 void OpenGlTutorialApp::buildTutorialList()

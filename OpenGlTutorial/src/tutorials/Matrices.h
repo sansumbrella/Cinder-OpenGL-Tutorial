@@ -42,5 +42,8 @@ public:
   void setup() override;
   void draw() override;
 private:
-  ci::gl::BatchRef    mBatch;
+  // Triangle batch will be drawn closely following the online tutorial.
+  ci::gl::BatchRef    mTriangleBatch;
+  // Teapot batch uses a few of Cinder's helpers.
+  ci::gl::BatchRef    mTeapotBatch;
 };

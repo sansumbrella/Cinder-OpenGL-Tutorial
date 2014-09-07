@@ -56,13 +56,43 @@ void Matrices::setup()
 
   // Load shader programs from our assets folder.
   auto shader = gl::GlslProg::create( gl::GlslProg::Format()
-                                 .vertex( app::loadAsset( "02/noTransform.vs" ) )
-                                 .fragment( app::loadAsset( "02/red.fs" ) ) );
+                                 .vertex( app::loadAsset( "03/mvp.vs" ) )
+                                 .fragment( app::loadAsset( "03/color.fs" ) ) );
 
-  mBatch = gl::Batch::create( mesh, shader );
+  mTriangleBatch = gl::Batch::create( mesh, shader );
+
+
+  auto teapotShader = gl::GlslProg::create( gl::GlslProg::Format()
+                                     .vertex( app::loadAsset( "03/cinder_matrices.vs" ) )
+                                     .fragment( app::loadAsset( "03/color.fs" ) ) );
+  mTeapotBatch = gl::Batch::create( geom::Teapot(), teapotShader );
 }
 
 void Matrices::draw()
 {
-  mBatch->draw();
+  // Build up a model-view-projection matrix.
+  mat4 projection = glm::perspective( 45.0f, app::getWindowWidth() / (float) app::getWindowHeight(), 0.1f, 100.0f );
+  mat4 view = glm::lookAt( vec3( 4, 3, 3 ), vec3( 0, 0, 0 ), vec3( 0, 1, 0 ) );
+  mat4 model( 1 );
+
+  // Pass our MVP matrix to our triangle's shader
+  mat4 mvp = projection * view * model;
+  mTriangleBatch->getGlslProg()->uniform( "uMVP", mvp );
+  mTriangleBatch->getGlslProg()->uniform( "uColor", vec3( 1, 0, 0 ) );
+  mTriangleBatch->draw();
+
+
+  // Use the same view and projection matrices, but pass to teapot shader using Cinder's matrix stack.
+  // Slightly animate the model matrix.
+  model *= glm::translate( vec3( -2.0f, 0.0f, 0.0f ) ) *
+          glm::eulerAngleX( -(float)M_PI * 0.25f * (float)app::getElapsedSeconds() ) *
+          glm::scale( vec3( 0.75f ) ) *
+          glm::translate( vec3( 0.0f, -0.5f, 0.0f ) );
+
+  gl::ScopedMatrices matrices;
+  gl::setModelMatrix( model );
+  gl::setViewMatrix( view );
+  gl::setProjectionMatrix( projection );
+  mTeapotBatch->getGlslProg()->uniform( "uColor", vec3( 0, 1, 0 ) );
+  mTeapotBatch->draw();
 }
