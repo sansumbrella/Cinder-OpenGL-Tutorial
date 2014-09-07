@@ -4,7 +4,8 @@
 
 #include "cinder/params/Params.h"
 
-#include "FirstTriangle.h"
+#include "tutorials/FirstTriangle.h"
+#include "tutorials/Matrices.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -62,7 +63,7 @@ void OpenGlTutorialApp::setup()
 void OpenGlTutorialApp::buildTutorialList()
 {
   mTutorialMakers.push_back( make_pair( "02 First Triangle", &make_shared<FirstTriangle> ) );
-  mTutorialMakers.push_back( make_pair( "02 Just Like the First Triangle", &make_shared<FirstTriangle> ) );
+  mTutorialMakers.push_back( make_pair( "03 Matrices", &make_shared<Matrices> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
