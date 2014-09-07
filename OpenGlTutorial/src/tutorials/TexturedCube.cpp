@@ -28,6 +28,7 @@
 #include "TexturedCube.h"
 
 #include "cinder/gl/Texture.h"
+#include "cinder/gl/GlslProg.h"
 
 using namespace std;
 using namespace cinder;
@@ -37,9 +38,28 @@ void TexturedCube::setup()
 
   mTexture = gl::Texture::create( loadImage( app::loadAsset( "05/texture-01.jpg" ) ) );
 
+  auto shader = gl::GlslProg::create( gl::GlslProg::Format()
+                                     .vertex( app::loadAsset( "05/texture.vs" ) )
+                                     .fragment( app::loadAsset( "05/texture.fs" ) )
+                                     );
+
+  mBatch = gl::Batch::create( geom::Cube().enable( geom::TEX_COORD_0 ), shader );
+
 }
 
 void TexturedCube::draw()
 {
-  gl::draw( mTexture );
+  gl::enableDepthWrite();
+  gl::enableDepthRead();
+
+  gl::ScopedTextureBind tex0( mTexture );
+  mat4 projection = glm::perspective( 45.0f, app::getWindowWidth() / (float) app::getWindowHeight(), 0.1f, 100.0f );
+  mat4 view = glm::lookAt( vec3( 4, 3, 3 ), vec3( 0, 0, 0 ), vec3( 0, 1, 0 ) );
+  mat4 model( 1 );
+  mat4 mvp = projection * view * model;
+
+  mBatch->getGlslProg()->uniform( "uColorMap", 0 );
+  mBatch->getGlslProg()->uniform( "uMVP", mvp );
+  mBatch->getGlslProg()->uniform( "uColor", vec3( 1 ) );
+  mBatch->draw();
 }

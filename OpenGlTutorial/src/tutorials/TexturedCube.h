@@ -29,6 +29,8 @@
 
 #include "TutorialBase.h"
 
+#include "cinder/gl/Batch.h"
+
 class TexturedCube : public TutorialBase
 {
 public:
@@ -39,5 +41,6 @@ public:
 private:
 
   ci::gl::TextureRef  mTexture;
+  ci::gl::BatchRef    mBatch;
 
 };
