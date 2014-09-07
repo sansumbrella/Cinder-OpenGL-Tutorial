@@ -84,8 +84,9 @@ void Matrices::draw()
 
   // Use the same view and projection matrices, but pass to teapot shader using Cinder's matrix stack.
   // Slightly animate the model matrix.
+  float t = app::getElapsedSeconds();
   model *= glm::translate( vec3( -2.0f, 0.0f, 0.0f ) ) *
-          glm::eulerAngleX( -(float)M_PI * 0.25f * (float)app::getElapsedSeconds() ) *
+          glm::eulerAngleX( -(float)M_PI * 0.25f * t ) *
           glm::scale( vec3( 0.75f ) ) *
           glm::translate( vec3( 0.0f, -0.5f, 0.0f ) );
 
