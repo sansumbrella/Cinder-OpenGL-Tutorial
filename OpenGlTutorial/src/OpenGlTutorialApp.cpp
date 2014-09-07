@@ -6,6 +6,7 @@
 
 #include "tutorials/FirstTriangle.h"
 #include "tutorials/Matrices.h"
+#include "tutorials/ColoredCube.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -57,13 +58,15 @@ void OpenGlTutorialApp::setup()
   mParams->addButton( "Next Tutorial", [this] { loadTutorial( mTutorialIndex + 1 ); } );
   mParams->addButton( "Previous Tutorial", [this] { loadTutorial( mTutorialIndex - 1 ); } );
 
-  loadTutorial( 1 );
+  // load the last tutorial.
+  loadTutorial( mTutorialMakers.size() - 1 );
 }
 
 void OpenGlTutorialApp::buildTutorialList()
 {
   mTutorialMakers.push_back( make_pair( "02 First Triangle", &make_shared<FirstTriangle> ) );
   mTutorialMakers.push_back( make_pair( "03 Matrices", &make_shared<Matrices> ) );
+  mTutorialMakers.push_back( make_pair( "04 Colored Cube", &make_shared<ColoredCube> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
