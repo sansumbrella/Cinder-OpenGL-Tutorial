@@ -36,9 +36,6 @@
 class FirstTriangle : public TutorialBase
 {
 public:
-  FirstTriangle();
-  ~FirstTriangle();
-
   void setup() override;
 
   void draw() override;

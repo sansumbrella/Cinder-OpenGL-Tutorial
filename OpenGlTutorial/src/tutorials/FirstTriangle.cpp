@@ -33,12 +33,6 @@
 using namespace std;
 using namespace cinder;
 
-FirstTriangle::FirstTriangle()
-{}
-
-FirstTriangle::~FirstTriangle()
-{}
-
 void FirstTriangle::setup()
 {
   // Our vertex positions

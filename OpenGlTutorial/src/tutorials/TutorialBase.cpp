@@ -26,10 +26,3 @@
  */
 
 #include "TutorialBase.h"
-
-TutorialBase::TutorialBase()
-{}
-
-TutorialBase::~TutorialBase()
-{}
-

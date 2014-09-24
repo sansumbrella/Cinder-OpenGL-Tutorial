@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 David Wicks, sansumbrella.com
+ * Copyright (c) 2013 David Wicks, sansumbrella.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or
@@ -27,28 +27,40 @@
 
 #pragma once
 
-#include "ConnectionManager.h"
+#include "cinder/Function.h"
 
-class TutorialBase
+namespace pockets
 {
-public:
-  virtual ~TutorialBase() = default;
+  /**
+   ConnectionManager:
+   A utility for managing groups of ci::signals together.
+   Helps avoid bloat of connection objects within a class.
+   Enables easy pausing, resuming, and destruction of connections.
+   Disconnects in destructor to avoid bad access errors.
+   */
+  class ConnectionManager
+  {
+  public:
+    ConnectionManager() = default;
 
-  //! Called once to initialize OpenGL objects.
-  virtual void setup() {}
+    //! disconnects all stored connections
+    ~ConnectionManager();
 
-  //! Called at 60Hz to update animations, etc.
-  virtual void update() {}
+    //! store a signal in manager
+    inline void store( const ci::signals::connection &connection )
+    { mConnections.push_back( connection ); }
 
-  //! Called at 60Hz to render to screen.
-  virtual void draw() = 0;
+    //! Disconnect all stored connections permanently.
+    //! To temporarily block connections, call block instead.
+    void        disconnect();
 
-  //! Returns a reference to our connection manager.
-  pockets::ConnectionManager& connectionManager() { return mSignalConnections; }
+    //! temporarily stop receiving signals
+    void        block();
 
-private:
-
-  pockets::ConnectionManager  mSignalConnections;
-};
-
-using TutorialRef = std::shared_ptr<TutorialBase>;
+    //! resume receiving blocked signals
+    void        resume();
+  private:
+    std::vector<ci::signals::connection>              mConnections;
+    std::vector<ci::signals::shared_connection_block> mBlocks;
+  };
+}

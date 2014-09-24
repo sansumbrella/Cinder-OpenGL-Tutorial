@@ -27,28 +27,32 @@
 
 #pragma once
 
-#include "ConnectionManager.h"
+#include "TutorialBase.h"
+#include "cinder/gl/Batch.h"
 
-class TutorialBase
+class KeyboardAndMouse : public TutorialBase
 {
 public:
-  virtual ~TutorialBase() = default;
+  void setup() override;
 
-  //! Called once to initialize OpenGL objects.
-  virtual void setup() {}
+  void update() override;
 
-  //! Called at 60Hz to update animations, etc.
-  virtual void update() {}
+  void draw() override;
 
-  //! Called at 60Hz to render to screen.
-  virtual void draw() = 0;
-
-  //! Returns a reference to our connection manager.
-  pockets::ConnectionManager& connectionManager() { return mSignalConnections; }
-
+  void keyboardMotion( const ci::app::KeyEvent &event );
 private:
+  ci::gl::BatchRef  mCubeBatch;
 
-  pockets::ConnectionManager  mSignalConnections;
+  ci::vec3  mPosition = ci::vec3( 0, 3, 5 );
+  ci::vec2  mViewAngles = ci::vec2( M_PI, 0.0f );
+  ci::vec2  mKeyVelocity;
+  glm::mat4 mProjectionMatrix;
+  glm::mat4 mViewMatrix;
+
+  float     mFov = 45.0f;
+  float     mSpeed = 3.0f;
+  float     mMouseSpeed = 0.05f;
+
+  ci::vec2  mMousePos, mPrevMousePos;
+  ci::Timer mFrameTimer;
 };
-
-using TutorialRef = std::shared_ptr<TutorialBase>;

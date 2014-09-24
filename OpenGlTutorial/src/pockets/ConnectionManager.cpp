@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 David Wicks, sansumbrella.com
+ * Copyright (c) 2013 David Wicks, sansumbrella.com
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or
@@ -25,30 +25,33 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#pragma once
-
 #include "ConnectionManager.h"
 
-class TutorialBase
+using namespace pockets;
+
+ConnectionManager::~ConnectionManager()
 {
-public:
-  virtual ~TutorialBase() = default;
+  disconnect();
+}
 
-  //! Called once to initialize OpenGL objects.
-  virtual void setup() {}
+void ConnectionManager::disconnect()
+{
+  for( auto &c : mConnections )
+  {
+    c.disconnect();
+  }
+  mConnections.clear();
+}
 
-  //! Called at 60Hz to update animations, etc.
-  virtual void update() {}
+void ConnectionManager::block()
+{
+  for( auto &c : mConnections )
+  { // constructs a block around the given connection
+    mBlocks.emplace_back( c );
+  }
+}
 
-  //! Called at 60Hz to render to screen.
-  virtual void draw() = 0;
-
-  //! Returns a reference to our connection manager.
-  pockets::ConnectionManager& connectionManager() { return mSignalConnections; }
-
-private:
-
-  pockets::ConnectionManager  mSignalConnections;
-};
-
-using TutorialRef = std::shared_ptr<TutorialBase>;
+void ConnectionManager::resume()
+{
+  mBlocks.clear();
+}

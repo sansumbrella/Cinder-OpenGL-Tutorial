@@ -20,6 +20,8 @@
 		1509F6E119BCB54A00630303 /* Matrices.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1509F6DF19BCB54A00630303 /* Matrices.cpp */; };
 		1509F6E419BCC5A300630303 /* ColoredCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1509F6E219BCC5A300630303 /* ColoredCube.cpp */; };
 		1509F6E719BCD1D600630303 /* TexturedCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1509F6E519BCD1D600630303 /* TexturedCube.cpp */; };
+		150A921919D249CE006397F7 /* KeyboardAndMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 150A921719D249CE006397F7 /* KeyboardAndMouse.cpp */; };
+		150A922019D24A97006397F7 /* ConnectionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 150A921E19D24A97006397F7 /* ConnectionManager.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		8730A546F68F4CA8A20CD815 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E09FE5444757B1AAA114 /* CinderApp.icns */; };
@@ -47,6 +49,10 @@
 		1509F6E319BCC5A300630303 /* ColoredCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColoredCube.h; sourceTree = "<group>"; };
 		1509F6E519BCD1D600630303 /* TexturedCube.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TexturedCube.cpp; sourceTree = "<group>"; };
 		1509F6E619BCD1D600630303 /* TexturedCube.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TexturedCube.h; sourceTree = "<group>"; };
+		150A921719D249CE006397F7 /* KeyboardAndMouse.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardAndMouse.cpp; sourceTree = "<group>"; };
+		150A921819D249CE006397F7 /* KeyboardAndMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardAndMouse.h; sourceTree = "<group>"; };
+		150A921E19D24A97006397F7 /* ConnectionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConnectionManager.cpp; sourceTree = "<group>"; };
+		150A921F19D24A97006397F7 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		43D0E09FE5444757B1AAA114 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 		1509F6CD19BCA28000630303 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				150A921D19D24A97006397F7 /* pockets */,
 				1509F6D019BCA29D00630303 /* tutorials */,
 				1509F6CE19BCA28000630303 /* OpenGlTutorialApp.cpp */,
 			);
@@ -135,8 +142,19 @@
 				1509F6E319BCC5A300630303 /* ColoredCube.h */,
 				1509F6E519BCD1D600630303 /* TexturedCube.cpp */,
 				1509F6E619BCD1D600630303 /* TexturedCube.h */,
+				150A921719D249CE006397F7 /* KeyboardAndMouse.cpp */,
+				150A921819D249CE006397F7 /* KeyboardAndMouse.h */,
 			);
 			path = tutorials;
+			sourceTree = "<group>";
+		};
+		150A921D19D24A97006397F7 /* pockets */ = {
+			isa = PBXGroup;
+			children = (
+				150A921E19D24A97006397F7 /* ConnectionManager.cpp */,
+				150A921F19D24A97006397F7 /* ConnectionManager.h */,
+			);
+			path = pockets;
 			sourceTree = "<group>";
 		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
@@ -256,8 +274,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1509F6E419BCC5A300630303 /* ColoredCube.cpp in Sources */,
+				150A922019D24A97006397F7 /* ConnectionManager.cpp in Sources */,
 				1509F6D319BCA2C200630303 /* FirstTriangle.cpp in Sources */,
 				1509F6E119BCB54A00630303 /* Matrices.cpp in Sources */,
+				150A921919D249CE006397F7 /* KeyboardAndMouse.cpp in Sources */,
 				1509F6E719BCD1D600630303 /* TexturedCube.cpp in Sources */,
 				1509F6D619BCA2D400630303 /* TutorialBase.cpp in Sources */,
 				1509F6CF19BCA28000630303 /* OpenGlTutorialApp.cpp in Sources */,
