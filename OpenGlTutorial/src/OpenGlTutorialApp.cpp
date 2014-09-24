@@ -60,6 +60,7 @@ void OpenGlTutorialApp::setup()
   mParams->addParam( "Current Tutorial", names, &mTutorialIndex );
   mParams->addButton( "Next Tutorial", [this] { loadTutorial( mTutorialIndex + 1 ); } );
   mParams->addButton( "Previous Tutorial", [this] { loadTutorial( mTutorialIndex - 1 ); } );
+  mParams->addButton( "Reload Tutorial", [this] { loadTutorial( mTutorialIndex ); } );
 
   // load the last tutorial.
   loadTutorial( mTutorialMakers.size() - 1 );
