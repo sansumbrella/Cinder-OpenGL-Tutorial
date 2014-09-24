@@ -36,7 +36,6 @@ void ModelLoading::setup()
 {
   ObjLoader loader( app::loadAsset( "07/susan.obj" ) );
 
-  app::console() << "Monkey loaded with " << loader.getNumVertices() << " vertices." << endl;;
   mMonkeyBatch = gl::Batch::create( loader, gl::GlslProg::create( app::loadAsset( "07/susan.vs" ), app::loadAsset( "07/susan.fs" ) ) );
 }
 

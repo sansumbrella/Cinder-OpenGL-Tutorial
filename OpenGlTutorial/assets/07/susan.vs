@@ -17,6 +17,8 @@ out vec3 vNormal;
 // from vertex to light in camera space
 out vec3 vLightDirection;
 out vec3 vColor;
+out vec3 vEye;
+out vec3 vReflection;
 
 void main()
 {
@@ -31,4 +33,6 @@ void main()
   vLightDirection = csLightPosition + csEyeDirection;
 
   vNormal = (ciModelView * vec4( ciNormal, 0 )).xyz;
+  vEye = normalize( csEyeDirection );
+  vReflection = reflect( -vLightDirection, vNormal );
 }
