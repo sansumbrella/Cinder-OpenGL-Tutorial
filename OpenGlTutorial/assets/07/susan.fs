@@ -12,6 +12,6 @@ void main()
 {
 	float cosTheta = clamp( dot( normalize(vNormal), normalize(vLightDirection) ), 0, 1 );
 
-	fColor = uColor * vColor * cosTheta;
-//	fColor += uColor * cosTheta;
+	fColor = vColor * vec3( 0.2 ) +
+			 uColor * vColor * cosTheta * vec3( 0.8 );
 }
