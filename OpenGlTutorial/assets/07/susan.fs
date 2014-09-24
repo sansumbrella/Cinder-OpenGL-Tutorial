@@ -15,7 +15,7 @@ void main()
 	float cosTheta = clamp( dot( normalize(vNormal), normalize(vLightDirection) ), 0, 1 );
 	float cosAlpha = clamp( dot( normalize(vEye), normalize(vReflection) ), 0, 1 );
 
-	fColor = vColor * vec3( 0.2 ) +
-			 uColor * vColor * cosTheta * vec3( 0.8 ) +
-			 vec3( 1, 0, 1 ) * pow( cosAlpha, 5 );
+	fColor = uColor * vec3( 0.2 ) +
+			 uColor * cosTheta * vec3( 0.8 ) +
+			 vec3( 1, 0, 1 ) * pow( cosAlpha, 3 );
 }

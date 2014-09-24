@@ -9,8 +9,9 @@ layout(location = 1) in vec3 ciNormal;
 // This is the model view projection matrix.
 uniform mat4 ciModelViewProjection;
 uniform mat4 ciModelView;
+uniform mat4 ciModelViewInverseTranspose;
 uniform mat4 ciViewMatrix;
-uniform vec3 uLightPosition = vec3( -30, 30, 5 );
+uniform vec3 uLightPosition = vec3( 50, 150, 50 );
 
 // normal in camera space
 out vec3 vNormal;
@@ -32,7 +33,9 @@ void main()
 
   vLightDirection = csLightPosition + csEyeDirection;
 
-  vNormal = (ciModelView * vec4( ciNormal, 0 )).xyz;
+  vec3 normal = (ciModelViewInverseTranspose * vec4( ciNormal, 0 )).xyz;
+  vNormal = (ciModelView * vec4( ciNormal, 0 ) ).xyz;
+//  vNormal = normal;
   vEye = normalize( csEyeDirection );
-  vReflection = reflect( -vLightDirection, vNormal );
+  vReflection = reflect( -vLightDirection, normal );
 }
