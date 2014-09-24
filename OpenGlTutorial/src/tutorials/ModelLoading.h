@@ -30,29 +30,15 @@
 #include "TutorialBase.h"
 #include "cinder/gl/Batch.h"
 
-class KeyboardAndMouse : public TutorialBase
+class ModelLoading : public TutorialBase
 {
 public:
-  void setup() override;
 
-  void update() override;
+  void setup();
 
-  void draw() override;
+  void draw();
 
-  void keyboardMotion( const ci::app::KeyEvent &event );
 private:
-  ci::gl::BatchRef  mCubeBatch;
+  ci::gl::BatchRef  mMonkeyBatch;
 
-  ci::vec3  mPosition = ci::vec3( 0, 1, 5 );
-  ci::vec2  mViewAngles = ci::vec2( M_PI, 0.0f );
-  ci::vec2  mKeyVelocity;
-  glm::mat4 mProjectionMatrix;
-  glm::mat4 mViewMatrix;
-
-  float     mFov = 45.0f;
-  float     mSpeed = 3.0f;
-  float     mMouseSpeed = 0.05f;
-
-  ci::vec2  mMousePos, mPrevMousePos;
-  ci::Timer mFrameTimer;
 };

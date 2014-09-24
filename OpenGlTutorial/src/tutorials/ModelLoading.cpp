@@ -25,34 +25,35 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#pragma once
+#include "ModelLoading.h"
+#include "cinder/ObjLoader.h"
+#include "cinder/gl/GlslProg.h"
 
-#include "TutorialBase.h"
-#include "cinder/gl/Batch.h"
+using namespace std;
+using namespace cinder;
 
-class KeyboardAndMouse : public TutorialBase
+void ModelLoading::setup()
 {
-public:
-  void setup() override;
+  ObjLoader loader( app::loadAsset( "07/susan.obj" ) );
 
-  void update() override;
+  app::console() << "Monkey loaded with " << loader.getNumVertices() << " vertices." << endl;;
+  mMonkeyBatch = gl::Batch::create( loader, gl::GlslProg::create( app::loadAsset( "07/susan.vs" ), app::loadAsset( "07/susan.fs" ) ) );
+}
 
-  void draw() override;
+void ModelLoading::draw()
+{
+  gl::setMatricesWindowPersp( app::getWindowSize() );
+  gl::color( Color::white() );
+  gl::translate( app::getWindowCenter() );
+  quat q = glm::quat_cast( glm::eulerAngleYXZ<float>( app::getElapsedSeconds() * 0.3f, app::getElapsedSeconds() * 0.5f, app::getElapsedSeconds() * 0.7f ) );
+  gl::rotate( q );
+  gl::scale( vec3( 180.0f ) );
 
-  void keyboardMotion( const ci::app::KeyEvent &event );
-private:
-  ci::gl::BatchRef  mCubeBatch;
+  // Our model isn't properly formed for face culling to work.
+//  gl::ScopedFaceCulling cull( true, GL_FRONT );
+  gl::enableDepthRead();
+  gl::enableDepthWrite();
+  mMonkeyBatch->getGlslProg()->uniform( "uColor", Color::white() );
+  mMonkeyBatch->draw();
+}
 
-  ci::vec3  mPosition = ci::vec3( 0, 1, 5 );
-  ci::vec2  mViewAngles = ci::vec2( M_PI, 0.0f );
-  ci::vec2  mKeyVelocity;
-  glm::mat4 mProjectionMatrix;
-  glm::mat4 mViewMatrix;
-
-  float     mFov = 45.0f;
-  float     mSpeed = 3.0f;
-  float     mMouseSpeed = 0.05f;
-
-  ci::vec2  mMousePos, mPrevMousePos;
-  ci::Timer mFrameTimer;
-};

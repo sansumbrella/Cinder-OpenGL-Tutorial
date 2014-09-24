@@ -22,6 +22,7 @@
 		1509F6E719BCD1D600630303 /* TexturedCube.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1509F6E519BCD1D600630303 /* TexturedCube.cpp */; };
 		150A921919D249CE006397F7 /* KeyboardAndMouse.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 150A921719D249CE006397F7 /* KeyboardAndMouse.cpp */; };
 		150A922019D24A97006397F7 /* ConnectionManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 150A921E19D24A97006397F7 /* ConnectionManager.cpp */; };
+		150A922319D25798006397F7 /* ModelLoading.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 150A922119D25798006397F7 /* ModelLoading.cpp */; };
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		5323E6B60EAFCA7E003A9687 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B50EAFCA7E003A9687 /* QTKit.framework */; };
 		8730A546F68F4CA8A20CD815 /* CinderApp.icns in Resources */ = {isa = PBXBuildFile; fileRef = 43D0E09FE5444757B1AAA114 /* CinderApp.icns */; };
@@ -53,6 +54,8 @@
 		150A921819D249CE006397F7 /* KeyboardAndMouse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyboardAndMouse.h; sourceTree = "<group>"; };
 		150A921E19D24A97006397F7 /* ConnectionManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ConnectionManager.cpp; sourceTree = "<group>"; };
 		150A921F19D24A97006397F7 /* ConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionManager.h; sourceTree = "<group>"; };
+		150A922119D25798006397F7 /* ModelLoading.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModelLoading.cpp; sourceTree = "<group>"; };
+		150A922219D25798006397F7 /* ModelLoading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelLoading.h; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		43D0E09FE5444757B1AAA114 /* CinderApp.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = CinderApp.icns; path = ../resources/CinderApp.icns; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 				1509F6E619BCD1D600630303 /* TexturedCube.h */,
 				150A921719D249CE006397F7 /* KeyboardAndMouse.cpp */,
 				150A921819D249CE006397F7 /* KeyboardAndMouse.h */,
+				150A922119D25798006397F7 /* ModelLoading.cpp */,
+				150A922219D25798006397F7 /* ModelLoading.h */,
 			);
 			path = tutorials;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			files = (
 				1509F6E419BCC5A300630303 /* ColoredCube.cpp in Sources */,
 				150A922019D24A97006397F7 /* ConnectionManager.cpp in Sources */,
+				150A922319D25798006397F7 /* ModelLoading.cpp in Sources */,
 				1509F6D319BCA2C200630303 /* FirstTriangle.cpp in Sources */,
 				1509F6E119BCB54A00630303 /* Matrices.cpp in Sources */,
 				150A921919D249CE006397F7 /* KeyboardAndMouse.cpp in Sources */,

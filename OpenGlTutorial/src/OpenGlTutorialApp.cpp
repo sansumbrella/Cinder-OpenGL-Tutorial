@@ -9,6 +9,7 @@
 #include "tutorials/ColoredCube.h"
 #include "tutorials/TexturedCube.h"
 #include "tutorials/KeyboardAndMouse.h"
+#include "tutorials/ModelLoading.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -71,6 +72,7 @@ void OpenGlTutorialApp::buildTutorialList()
   mTutorialMakers.push_back( make_pair( "04 Colored Cube", &make_shared<ColoredCube> ) );
   mTutorialMakers.push_back( make_pair( "05 Textured Cube", &make_shared<TexturedCube> ) );
   mTutorialMakers.push_back( make_pair( "06 Keyboard and Mouse", &make_shared<KeyboardAndMouse> ) );
+  mTutorialMakers.push_back( make_pair( "07 Model Loading", &make_shared<ModelLoading> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
