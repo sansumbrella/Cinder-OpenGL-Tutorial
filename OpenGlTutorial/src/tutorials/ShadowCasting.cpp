@@ -37,6 +37,7 @@ void ShadowCasting::draw()
 {
   double t = app::getElapsedSeconds();
   gl::ScopedMatrices matrices;
+  gl::ScopedFrontFace front(GL_CCW);
 
   vec3 lightInvDir = vec3(0.5f, 2, 2);
 
@@ -48,6 +49,7 @@ void ShadowCasting::draw()
 
   // Draw scene from light's perspective
   {
+    gl::ScopedFaceCulling cull(GL_FRONT, true);
     gl::ScopedFramebuffer fbo(_shadow_fbo);
     gl::ScopedViewport    viewport(ivec2(0), _shadow_fbo->getSize());
     gl::ScopedMatrices matrices;
@@ -63,6 +65,7 @@ void ShadowCasting::draw()
 
   // Draw scene from camera's perspective
   {
+    gl::ScopedFaceCulling cull(GL_BACK, true);
     gl::ScopedViewport viewport(ivec2(0), app::getWindowSize());
     gl::ScopedGlslProg prog(_shadowed_prog);
     gl::ScopedTextureBind tex(_shadow_texture, 0);
