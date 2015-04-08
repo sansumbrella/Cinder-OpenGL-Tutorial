@@ -18,4 +18,7 @@ private:
 
   ci::gl::FboRef      _shadow_fbo;
   ci::gl::TextureRef  _shadow_texture;
+
+  ci::gl::GlslProgRef _shadowed_prog;
+  ci::CameraPersp     _camera;
 };
