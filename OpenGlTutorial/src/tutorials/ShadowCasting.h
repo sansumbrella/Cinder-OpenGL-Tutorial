@@ -12,5 +12,10 @@ class ShadowCasting : public TutorialBase
 public:
   void setup() override;
   void draw() override;
+
+  void drawScene( double atTime ) const;
 private:
+
+  ci::gl::FboRef      _shadow_fbo;
+  ci::gl::TextureRef  _shadow_texture;
 };

@@ -41,6 +41,7 @@ void ModelLoading::setup()
 
 void ModelLoading::draw()
 {
+  gl::ScopedMatrices matrices;
   gl::setMatricesWindowPersp( app::getWindowSize() );
   gl::color( Color::white() );
   gl::translate( app::getWindowCenter() );
