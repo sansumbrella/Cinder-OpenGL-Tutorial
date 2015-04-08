@@ -16,6 +16,8 @@ void ShadowCasting::setup()
   auto tex_format = gl::Texture::Format()
                       .internalFormat( GL_DEPTH_COMPONENT16 )
                       .swizzleMask( GL_RED, GL_RED, GL_RED, GL_RED )
+                      .compareMode( GL_COMPARE_REF_TO_TEXTURE )
+                      .compareFunc( GL_GREATER )
                       .dataType( GL_FLOAT );
   _shadow_texture = gl::Texture::create( size, size, tex_format );
 
