@@ -46,7 +46,7 @@ void TexturedCube::setup()
                                      .fragment( app::loadAsset( "05/texture.fs" ) )
                                      );
 
-  mBatch = gl::Batch::create( geom::Cube().enable( geom::TEX_COORD_0 ), shader );
+  mBatch = gl::Batch::create( geom::Cube(), shader );
 
 }
 

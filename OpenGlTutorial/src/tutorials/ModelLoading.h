@@ -34,9 +34,9 @@ class ModelLoading : public TutorialBase
 {
 public:
 
-  void setup();
+  void setup() override;
 
-  void draw();
+  void draw() override;
 
 private:
   ci::gl::BatchRef  mMonkeyBatch;

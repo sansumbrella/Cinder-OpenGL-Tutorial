@@ -1,4 +1,4 @@
-#include "cinder/app/AppNative.h"
+#include "cinder/app/App.h"
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
@@ -10,14 +10,14 @@
 #include "tutorials/TexturedCube.h"
 #include "tutorials/KeyboardAndMouse.h"
 #include "tutorials/ModelLoading.h"
+#include "tutorials/ShadowCasting.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
 
-class OpenGlTutorialApp : public AppNative {
+class OpenGlTutorialApp : public App {
 public:
-	void prepareSettings( Settings *settings ) override;
 	void setup() override;
 	void mouseDown( MouseEvent event ) override;
 	void update() override;
@@ -35,15 +35,6 @@ private:
   int                     mPrevTutorialIndex = 0;
   TutorialRef             mCurrentTutorial = nullptr;
 };
-
-void OpenGlTutorialApp::prepareSettings( Settings *settings )
-{
-	// Tutorial 1: open a window.
-	// Cinder handles this one for us. We can set the starting resolution here.
-	settings->setWindowSize( 1280, 720 );
-	// We can specify whether we want a fullscreen window, too.
-	settings->setFullScreen( false );
-}
 
 void OpenGlTutorialApp::setup()
 {
@@ -74,6 +65,7 @@ void OpenGlTutorialApp::buildTutorialList()
   mTutorialMakers.push_back( make_pair( "05 Textured Cube", &make_shared<TexturedCube> ) );
   mTutorialMakers.push_back( make_pair( "06 Keyboard and Mouse", &make_shared<KeyboardAndMouse> ) );
   mTutorialMakers.push_back( make_pair( "07 Model Loading", &make_shared<ModelLoading> ) );
+  mTutorialMakers.push_back( make_pair( "08 Shadow Casting", &make_shared<ShadowCasting> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
@@ -109,4 +101,13 @@ void OpenGlTutorialApp::draw()
 	mParams->draw();
 }
 
-CINDER_APP_NATIVE( OpenGlTutorialApp, RendererGl )
+void prepareSettings( App::Settings *settings )
+{
+  // Tutorial 1: open a window.
+  // Cinder handles this one for us. We can set the starting resolution here.
+  settings->setWindowSize( 1280, 720 );
+  // We can specify whether we want a fullscreen window, too.
+  settings->setFullScreen( false );
+}
+
+CINDER_APP( OpenGlTutorialApp, RendererGl, prepareSettings )
