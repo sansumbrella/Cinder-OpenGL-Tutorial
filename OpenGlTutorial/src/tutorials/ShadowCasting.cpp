@@ -10,7 +10,7 @@ using namespace cinder;
 
 void ShadowCasting::setup()
 {
-  const auto size = 1024;
+  const auto size = 2048;
 
   // Create a depth texture.
   auto tex_format = gl::Texture::Format()

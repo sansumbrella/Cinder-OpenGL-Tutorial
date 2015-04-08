@@ -1,7 +1,7 @@
 #version 330 core
 
 uniform sampler2DShadow uLightMap;
-uniform float           uBias = 0.001;
+uniform float           uBias = 0.01;
 
 in vec4 vShadowPosition;
 
