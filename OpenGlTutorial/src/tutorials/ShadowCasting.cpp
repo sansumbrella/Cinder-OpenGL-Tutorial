@@ -59,10 +59,15 @@ void ShadowCasting::draw()
     gl::setProjectionMatrix( depth_projection );
     gl::setViewMatrix( depth_view );
 
+    gl::enable( GL_POLYGON_OFFSET_FILL );
+    glPolygonOffset( 2.0f, 4.0f );
+
     gl::clear();
     gl::enableDepthRead();
     gl::enableDepthWrite();
     drawScene( t );
+
+    gl::disable( GL_POLYGON_OFFSET_FILL );
   }
 
   // Draw scene from camera's perspective
