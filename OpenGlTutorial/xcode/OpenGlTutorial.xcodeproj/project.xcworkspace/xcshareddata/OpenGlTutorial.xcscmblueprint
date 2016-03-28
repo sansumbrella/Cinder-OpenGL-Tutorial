@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D337A2384E4C50D26D6576DA191126E850258F93",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D337A2384E4C50D26D6576DA191126E850258F93" : 0,
+    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "254B2C8F-EB9C-415E-B8FE-F9E234029A51",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D337A2384E4C50D26D6576DA191126E850258F93" : "Cinder-OpenGL-Tutorial\/",
+    "AD4B458D0D225ED63FAE0155615993B7D3ECE020" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "OpenGlTutorial",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "OpenGlTutorial\/xcode\/OpenGlTutorial.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:sansumbrella\/Cinder.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AD4B458D0D225ED63FAE0155615993B7D3ECE020"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:sansumbrella\/Cinder-OpenGL-Tutorial.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D337A2384E4C50D26D6576DA191126E850258F93"
+    }
+  ]
+}
