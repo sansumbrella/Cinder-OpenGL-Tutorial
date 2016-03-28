@@ -99,6 +99,6 @@ void ShadowCasting::drawScene( double atTime ) const
 {
   Rand r( atTime * 0.1f );
   for( int i = 0; i < 20; ++i ) {
-    gl::drawCube( r.nextVec3f() * 5.0f, vec3( glm::mix( 1.5f, 3.0f, r.nextFloat() * r.nextFloat() ) ) );
+    gl::drawCube( r.nextVec3() * 5.0f, vec3( glm::mix( 1.5f, 3.0f, r.nextFloat() * r.nextFloat() ) ) );
   }
 }
