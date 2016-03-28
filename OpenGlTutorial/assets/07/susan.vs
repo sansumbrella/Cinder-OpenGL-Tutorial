@@ -2,40 +2,24 @@
 
 // Cinder passes in position and other inputs based on semantics.
 // Notice that the type 'vec3' matches what we have in C++.
-layout(location = 0) in vec3 ciPosition;
+layout(location = 0) in vec4 ciPosition;
 layout(location = 1) in vec3 ciNormal;
 
 // Cinder passes in many uniforms based on semantics.
 // This is the model view projection matrix.
 uniform mat4 ciModelViewProjection;
-uniform mat4 ciModelView;
+uniform mat4 ciModelMatrix;
 uniform mat3 ciNormalMatrix;
 uniform mat4 ciViewMatrix;
-uniform vec3 uLightPosition = vec3( 50, 150, 50 );
 
-// normal in camera space
-out vec3 vNormal;
-// from vertex to light in camera space
-out vec3 vLightDirection;
-out vec3 vColor;
-out vec3 vEye;
-out vec3 vReflection;
+out Vertex {
+    vec3 Normal;
+    vec3 WorldPosition;
+} v;
 
 void main()
 {
-  gl_Position = ciModelViewProjection * vec4( ciPosition, 1.0 );
-  vColor = (ciPosition + vec3( 1 )) / 2.0f;
-
-  vec3 csPosition = (ciModelView * vec4( ciPosition, 1 )).xyz;
-  vec3 csEyeDirection = vec3( 0 ) - csPosition;
-
-  vec3 csLightPosition = (ciViewMatrix * vec4( uLightPosition, 1 )).xyz;
-
-  vLightDirection = csLightPosition + csEyeDirection;
-
-  vec3 normal = ciNormalMatrix * ciNormal;
-  vNormal = (ciModelView * vec4( ciNormal, 0 ) ).xyz;
-//  vNormal = normal;
-  vEye = normalize( csEyeDirection );
-  vReflection = reflect( -vLightDirection, normal );
+    gl_Position = ciModelViewProjection * ciPosition;
+    v.WorldPosition = vec3(ciModelMatrix * ciPosition);
+    v.Normal = ciNormalMatrix * ciNormal;
 }

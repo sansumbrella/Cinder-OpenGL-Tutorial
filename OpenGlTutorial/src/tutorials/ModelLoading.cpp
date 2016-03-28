@@ -35,8 +35,11 @@ using namespace cinder;
 void ModelLoading::setup()
 {
   ObjLoader loader( app::loadAsset( "07/susan.obj" ) );
+  // loader >> geom::Rotate( M_PI, vec3( 0, 0, 1 ) )
 
-  mMonkeyBatch = gl::Batch::create( loader, gl::GlslProg::create( app::loadAsset( "07/susan.vs" ), app::loadAsset( "07/susan.fs" ) ) );
+  mMonkeyBatch = gl::Batch::create( geom::Torus(), gl::GlslProg::create( app::loadAsset( "07/susan.vs" ), app::loadAsset( "07/susan.fs" ) ) );
+
+//  mMonkeyBatch = gl::Batch::create( geom::Torus(), gl::getStockShader(gl::ShaderDef().lambert()) );
 }
 
 void ModelLoading::draw()

@@ -1,21 +1,19 @@
 #version 330 core
 
 uniform vec3 uColor = vec3( 1 );
+uniform vec3 uLightPosition = vec3( -1000.0, 500.0, 2000.0 );
 
-in vec3 vColor;
-in vec3 vNormal;
-in vec3 vLightDirection;
-in vec3 vEye;
-in vec3 vReflection;
+in Vertex {
+    vec3 Normal;
+    vec3 WorldPosition;
+} v;
 
 out vec3 fColor;
 
 void main()
 {
-	float cosTheta = clamp( dot( normalize(vNormal), normalize(vLightDirection) ), 0, 1 );
-	float cosAlpha = clamp( dot( normalize(vEye), normalize(vReflection) ), 0, 1 );
-
-	fColor = uColor * vec3( 0.2 ) +
-			 uColor * cosTheta * vec3( 0.8 ) +
-			 vec3( 1, 0, 1 ) * pow( cosAlpha, 3 );
+    vec3 n = normalize(v.Normal);
+    vec3 l = normalize(uLightPosition - v.WorldPosition);
+    float diffuse = max(dot(n, l), 0.0);
+    fColor = vec3(diffuse);
 }

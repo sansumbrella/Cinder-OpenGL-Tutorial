@@ -3,7 +3,7 @@
 #include "cinder/gl/gl.h"
 
 #include "cinder/params/Params.h"
-
+#include "cinder/Log.h"
 #include "tutorials/FirstTriangle.h"
 #include "tutorials/Matrices.h"
 #include "tutorials/ColoredCube.h"
@@ -51,7 +51,7 @@ void OpenGlTutorialApp::setup()
   mParams->addParam( "Current Tutorial", names, &mTutorialIndex );
   mParams->addButton( "Next Tutorial", [this] { loadTutorial( mTutorialIndex + 1 ); } );
   mParams->addButton( "Previous Tutorial", [this] { loadTutorial( mTutorialIndex - 1 ); } );
-  mParams->addButton( "Reload Tutorial", [this] { loadTutorial( mTutorialIndex ); } );
+  mParams->addButton( "Reload Tutorial", [this] { loadTutorial( mTutorialIndex ); }, "key=r" );
 
   // load the last tutorial.
   loadTutorial( mTutorialMakers.size() - 1 );
@@ -64,8 +64,8 @@ void OpenGlTutorialApp::buildTutorialList()
   mTutorialMakers.push_back( make_pair( "04 Colored Cube", &make_shared<ColoredCube> ) );
   mTutorialMakers.push_back( make_pair( "05 Textured Cube", &make_shared<TexturedCube> ) );
   mTutorialMakers.push_back( make_pair( "06 Keyboard and Mouse", &make_shared<KeyboardAndMouse> ) );
-  mTutorialMakers.push_back( make_pair( "07 Model Loading", &make_shared<ModelLoading> ) );
   mTutorialMakers.push_back( make_pair( "08 Shadow Casting", &make_shared<ShadowCasting> ) );
+  mTutorialMakers.push_back( make_pair( "07 Model Loading", &make_shared<ModelLoading> ) );
 }
 
 void OpenGlTutorialApp::loadTutorial( int index )
@@ -76,8 +76,13 @@ void OpenGlTutorialApp::loadTutorial( int index )
   mTutorialIndex = index % mTutorialMakers.size();
   mPrevTutorialIndex = mTutorialIndex;
 
-  mCurrentTutorial = mTutorialMakers[mTutorialIndex].second();
-  mCurrentTutorial->setup();
+  try {
+    mCurrentTutorial = mTutorialMakers[mTutorialIndex].second();
+    mCurrentTutorial->setup();
+  }
+  catch(const std::exception &exc) {
+    CI_LOG_E( "Exception loading sample: " << exc.what() );
+  }
 }
 
 void OpenGlTutorialApp::mouseDown( MouseEvent event )
@@ -89,7 +94,8 @@ void OpenGlTutorialApp::update()
   if( mPrevTutorialIndex != mTutorialIndex ) {
     loadTutorial( mTutorialIndex );
   }
-  mCurrentTutorial->update();
+  if ( mCurrentTutorial )
+    mCurrentTutorial->update();
 }
 
 void OpenGlTutorialApp::draw()
@@ -97,7 +103,8 @@ void OpenGlTutorialApp::draw()
 	gl::clear( Color( 0, 0, 0 ) );
   gl::ScopedBlend blendScope( false );
 
-  mCurrentTutorial->draw();
+  if ( mCurrentTutorial )
+    mCurrentTutorial->draw();
 
 	mParams->draw();
 }
