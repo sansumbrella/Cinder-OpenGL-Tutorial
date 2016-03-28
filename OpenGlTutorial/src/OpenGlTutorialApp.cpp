@@ -95,6 +95,7 @@ void OpenGlTutorialApp::update()
 void OpenGlTutorialApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
+  gl::ScopedBlend blendScope( false );
 
   mCurrentTutorial->draw();
 
